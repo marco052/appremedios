@@ -41,9 +41,9 @@ class _SplashPageState extends State<SplashPage> {
           backgroundColor: Colors.transparent,
           body: Center(
               child: SizedBox(
-                  width: 150.0,
+                  width: 250.0,
                   child: Image.asset(
-                    "imagens/lindo.jpeg",
+                    "imagens/logo.png",
                     fit: BoxFit.contain,
                   )))),
     );
