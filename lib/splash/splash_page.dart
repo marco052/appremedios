@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:pharmacy_wiki/app/pages/Medicamentos/medicamentos_page.dart';
 import 'package:pharmacy_wiki/main.dart';
 
 class SplashPage extends StatefulWidget {
@@ -25,8 +26,10 @@ class _SplashPageState extends State<SplashPage> {
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (BuildContext context) =>
-                MyHomePage(title: "Pharmacy Wiki")));
+          builder: (BuildContext context) =>
+            MedicamentosPage()
+        )
+    );
   }
 
   @override
@@ -43,7 +46,7 @@ class _SplashPageState extends State<SplashPage> {
               child: SizedBox(
                   width: 250.0,
                   child: Image.asset(
-                    "imagens/logo.png",
+                    "assets/imagens/logo.png",
                     fit: BoxFit.contain,
                   )))),
     );

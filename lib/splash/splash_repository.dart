@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:pharmacy_wiki/app/pages/Medicamentos/medicamentos_page.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -22,7 +23,12 @@ class _SplashPageState extends State<SplashPage> {
 
   ///função para mudar para proxima pagina
   Future<void> navigationPage() async {
-    Navigator.pushReplacement(MyHomePage(title: 'Pharmacy Wiki'));
+    Navigator.pushReplacement(context,
+      MaterialPageRoute(
+        builder: (BuildContext context) =>
+          MedicamentosPage()
+      )  
+    );
   }
 
   @override
