@@ -25,26 +25,31 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> navigationPage() async {
     Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext context) => CadastroPage()));
+        MaterialPageRoute(builder: (BuildContext context) => MedicamentosPage()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Colors.lightBlue, Colors.white])),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Colors.lightBlue, Colors.white]
+        )
+      ),
       child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Center(
-              child: SizedBox(
-                  width: 250.0,
-                  child: Image.asset(
-                    "assets/imagens/logo.png",
-                    fit: BoxFit.contain,
-                  )))),
+        backgroundColor: Colors.transparent,
+        body: Center(
+          child: SizedBox(
+            width: 250.0,
+            child: Image.asset(
+              "assets/imagens/logo.png",
+              fit: BoxFit.contain,
+            )
+          )
+        )
+      ),
     );
   }
 }
