@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharmacy_wiki/splash/splash_page.dart';
+import 'package:pharmacy_wiki/modules/splash/splash_page.dart';
 
 void main() {
   runApp(MyApp());
