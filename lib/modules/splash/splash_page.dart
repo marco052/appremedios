@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:pharmacy_wiki/app/pages/Medicamentos/medicamentos_page.dart';
-import 'package:pharmacy_wiki/app/pages/cadastro_page.dart';
-import 'package:pharmacy_wiki/main.dart';
-import 'package:pharmacy_wiki/shared/theme/app_colors.dart';
+import 'package:pharmacy_wiki/modules/medicines/medicamentos_page.dart';
+import 'package:pharmacy_wiki/modules/user_info/cadastro_page.dart';
 import 'package:pharmacy_wiki/shared/theme/app_images.dart';
 
 class SplashPage extends StatefulWidget {
@@ -27,7 +25,7 @@ class _SplashPageState extends State<SplashPage> {
 
   Future<void> navigationPage() async {
     Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext context) => MedicamentosPage()));
+        MaterialPageRoute(builder: (BuildContext context) => CadastroPage()));
   }
 
   @override

@@ -2,7 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pharmacy_wiki/app/sharedClass/medicamentos_class.dart';
+import 'package:pharmacy_wiki/modules/leaflet/medicine_leaflet.dart';
+import 'package:pharmacy_wiki/shared/classes/medicamentos_class.dart';
 
 class MedicamentosPage extends StatefulWidget {
   const MedicamentosPage({Key? key}) : super(key: key);
@@ -143,10 +144,10 @@ class _MedicamentosPageState extends State<MedicamentosPage> {
                         color: Colors.blue,
                       ),
                       onPressed: () {
-                        //print(index);
-                        //int id = meusProjetos_pesquisa[index].id;
-                        //controller.idProjetoAtual = id;
-                        //Navigator.pushNamed(context, '/home/projetos/editProjeto');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => MedicineLeaflet()),
+                        );
                       },
                     ),
                   ),

@@ -14,8 +14,12 @@ class MedicineLeaflet extends StatelessWidget {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(left: 20, right: 1000, top: 30),
-            child: Icon(Icons.arrow_back_ios, color: AppColors.text),
+            padding: const EdgeInsets.only(right: 340, top: 30),
+            child: TextButton.icon(
+              icon: Icon(Icons.arrow_back_ios, color: AppColors.text),
+              onPressed: () => {Navigator.pop(context)},
+              label: Text(""),
+              ),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 20),

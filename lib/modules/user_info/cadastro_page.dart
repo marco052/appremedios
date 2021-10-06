@@ -2,17 +2,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pharmacy_wiki/modules/medicines/medicamentos_page.dart';
+import 'package:pharmacy_wiki/shared/theme/app_images.dart';
 
 class CadastroPage extends StatefulWidget {
   @override
   State<CadastroPage> createState() => _CadastroPageState();
 }
 
+
 class _CadastroPageState extends State<CadastroPage> {
   bool value = false;
   int val = -1;
   @override
   Widget build(BuildContext context) {
+
+    Future<void> navigationPage() async {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (BuildContext context) => MedicamentosPage()));
+    }
+
     return MaterialApp(
         title: "PharmacyWiki",
         theme: ThemeData(primaryColor: Colors.blue[200]),
@@ -39,9 +48,7 @@ class _CadastroPageState extends State<CadastroPage> {
                         SizedBox(
                           height: 50,
                         ),
-                        (Image.asset(
-                          "assets/imagens/undraw_doctors_hwty 1.png",
-                        )),
+                        (Image.asset(AppImages.doctors)),
                         Row(children: <Widget>[
                           SizedBox(width: 50),
                           SizedBox(
@@ -162,7 +169,7 @@ class _CadastroPageState extends State<CadastroPage> {
                               child: Text("Confirmar",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(color: Colors.white)),
-                              onPressed: () {},
+                              onPressed: () { navigationPage(); },
                             )),
                       ],
                     );
