@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pharmacy_wiki/modules/leaflet/medicine_leaflet.dart';
 import 'package:pharmacy_wiki/shared/classes/medicamentos_class.dart';
+import 'package:pharmacy_wiki/shared/theme/app_colors.dart';
 
 class MedicamentosPage extends StatefulWidget {
   const MedicamentosPage({Key? key}) : super(key: key);
@@ -14,24 +15,25 @@ class MedicamentosPage extends StatefulWidget {
 
 class _MedicamentosPageState extends State<MedicamentosPage> {
   TextEditingController editingController = TextEditingController();
-  late Medicamentos remedioAtual;
+  late Medicamento remedioAtual;
   bool isSearching = false;
 
-  List<Medicamentos> remedios = [
-    new Medicamentos.contrutor(1, "rivotril", "remedio pra doido"),
-    new Medicamentos.contrutor(2, "paracetamal", "remedio pra dor"),
-    new Medicamentos.contrutor(3, "omeprazol", "remedio pra barriga"),
-    new Medicamentos.contrutor(4, "viagra", "remedio pra broxa"),
-    new Medicamentos.contrutor(5, "diazepan", "remedio pra estressado"),
-  ];
+  late ObservableList<Medicamento> remediosPesq =
+      new ObservableList<Medicamento>();
 
-  late ObservableList<Medicamentos> remediosPesq =
-      new ObservableList<Medicamentos>();
+  List<Medicamento> remedios = [
+    new Medicamento.contrutor(1, "rivotril", "remedio pra doido"),
+    new Medicamento.contrutor(2, "paracetamal", "remedio pra dor"),
+    new Medicamento.contrutor(3, "omeprazol", "remedio pra barriga"),
+    //new Medicamento.contrutor(4, "viagra", "remedio pra broxa"),
+    new Medicamento.contrutor(5, "diazepan", "remedio pra estressado"),
+  ];
 
   @override
   void initState() {
     super.initState();
     editingController.text = '';
+    remediosPesq.addAll(remedios);
   }
 
   filterSearchResults(String query) {
@@ -53,15 +55,14 @@ class _MedicamentosPageState extends State<MedicamentosPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        backgroundColor: Color(0xFF3050ff),
+        backgroundColor: AppColors.primary,
         title: !isSearching
             ? Text("Medicamentos",
                 style: TextStyle(
-                    fontFamily: 'Jost',
-                    fontStyle: FontStyle.normal,
-                    fontSize: 25.0,
-                )
-              )
+                  fontFamily: 'Jost',
+                  fontStyle: FontStyle.normal,
+                  fontSize: 25.0,
+                ))
             : TextField(
                 onChanged: (value) {
                   filterSearchResults(value);
@@ -111,61 +112,62 @@ class _MedicamentosPageState extends State<MedicamentosPage> {
       ),
       backgroundColor: Colors.white,
       body: Observer(
-        builder: (_) => ListView.builder(
-          itemCount: remediosPesq.length,
-          itemBuilder: (context, index) {
-            return Container(
-              margin: EdgeInsets.only(
-                top: 20,
-              ),
-              child: ListTile(
-                leading: Icon(
-                  Icons.medication,
-                  size: 50,
-                  color: Colors.blue,
-                ),
-                title: Text(
-                  '${remediosPesq[index].name}',
-                  style: TextStyle(
-                    fontFamily: "Jost",
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold),
-                ),
-                dense: true,
-                trailing: SizedBox(
-                  width: 40.0,
-                  height: 40.0,
-                  child: Center(
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
-                      child: Icon(
-                        Icons.find_in_page,
-                        color: Colors.blue,
+          builder: (_) => ListView.builder(
+                itemCount: remediosPesq.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: EdgeInsets.only(top: 5, left: 10, right: 10),
+                    child: Card(
+                      color: Colors.grey[200],
+                      child: ListTile( 
+                        contentPadding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
+                        leading: Icon(
+                          Icons.medication,
+                          size: 50,
+                          color: Colors.blue,
+                        ),
+                        title: Text(
+                          '${remediosPesq[index].name}',
+                          style: TextStyle(
+                              fontFamily: "Jost",
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        dense: true,
+                        trailing: SizedBox(
+                          width: 40.0,
+                          height: 40.0,
+                          child: Center(
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.find_in_page,
+                                color: Colors.blue,
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => MedicineLeaflet()),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          String verif = remediosPesq[index].name;
+                          remediosPesq.forEach((rem) {
+                            if (rem.name == verif) remedioAtual = rem;
+                          });
+                    
+                          //Navigator.pushNamed(
+                          //context, '/home/projetos/detalhesProjeto');
+                        },
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => MedicineLeaflet()),
-                        );
-                      },
                     ),
-                  ),
-                ),
-                onTap: () {
-                  String verif = remediosPesq[index].name;
-                  remediosPesq.forEach((rem) {
-                    if (rem.name == verif) remedioAtual = rem;
-                  });
-
-                  //Navigator.pushNamed(
-                  //context, '/home/projetos/detalhesProjeto');
+                  );
                 },
-              ),
-            );
-          },
-        )
-      ),
+              )),
     );
   }
 }

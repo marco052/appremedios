@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:pharmacy_wiki/modules/home/home.dart';
 import 'package:pharmacy_wiki/modules/medicines/medicamentos_page.dart';
+import 'package:pharmacy_wiki/shared/theme/app_colors.dart';
 import 'package:pharmacy_wiki/shared/theme/app_images.dart';
+import 'package:pharmacy_wiki/shared/theme/app_text_styles.dart';
 
 class CadastroPage extends StatefulWidget {
   @override
@@ -19,7 +22,7 @@ class _CadastroPageState extends State<CadastroPage> {
 
     Future<void> navigationPage() async {
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext context) => MedicamentosPage()));
+          MaterialPageRoute(builder: (BuildContext context) => HomePage()));
     }
 
     return MaterialApp(
@@ -59,7 +62,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                 decoration: InputDecoration(
                                   floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
-                                  floatingLabelStyle: TextStyle(
+                                  hintStyle: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold),
                                   labelText: 'Nome',
@@ -80,7 +83,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                 decoration: InputDecoration(
                                   floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
-                                  floatingLabelStyle: TextStyle(
+                                  hintStyle: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold),
                                   labelText: 'Data de nascimento',
@@ -130,7 +133,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                   decoration: InputDecoration(
                                     floatingLabelBehavior:
                                         FloatingLabelBehavior.always,
-                                    floatingLabelStyle: TextStyle(
+                                    hintStyle: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold),
                                     labelText: 'Altura',
@@ -149,7 +152,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                   decoration: InputDecoration(
                                     floatingLabelBehavior:
                                         FloatingLabelBehavior.always,
-                                    floatingLabelStyle: TextStyle(
+                                    hintStyle: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold),
                                     labelText: 'Peso',
@@ -161,19 +164,35 @@ class _CadastroPageState extends State<CadastroPage> {
                                 ))
                           ],
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: 100),
                         SizedBox(
-                            width: 200,
-                            child: RaisedButton(
-                              color: Colors.blue[300],
-                              child: Text("Confirmar",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(color: Colors.white)),
-                              onPressed: () { navigationPage(); },
-                            )),
+                          height: 50,
+                          width: 200,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                MaterialStateProperty.all<Color>(AppColors.primary),
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                )
+                              )
+                            ),
+                            child: Text(
+                              "Confirmar",
+                              style: AppTextStyles.buttonText,
+                            ),
+                            onPressed: () {
+                              navigationPage();
+                            },
+                          ),
+                        ),
                       ],
                     );
-                  }()),
-            )));
+                  }()
+              ),
+            )
+        )
+    );
   }
 }

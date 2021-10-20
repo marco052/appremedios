@@ -12,7 +12,7 @@ class AppTextStyles {
   static final interBoldTitle = GoogleFonts.inter(
     fontSize: 32,
     fontWeight: FontWeight.w700,
-    color: AppColors.title
+    color: AppColors.buttonText
   );
 
   static final interText = GoogleFonts.inter(
@@ -30,7 +30,7 @@ class AppTextStyles {
   static final interSmall = GoogleFonts.inter(
     fontSize: 9,
     fontWeight: FontWeight.w500,
-    color: AppColors.title
+    color: AppColors.placeholder
   );
 
   static final label = GoogleFonts.jost(
