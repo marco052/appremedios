@@ -5,6 +5,7 @@ import 'package:mobx/mobx.dart';
 import 'package:pharmacy_wiki/modules/leaflet/medicine_leaflet.dart';
 import 'package:pharmacy_wiki/shared/classes/medicamentos_class.dart';
 import 'package:pharmacy_wiki/shared/theme/app_colors.dart';
+import 'package:pharmacy_wiki/services/medicine.dart' as medicineService;
 
 class MedicamentosPage extends StatefulWidget {
   const MedicamentosPage({Key? key}) : super(key: key);
@@ -21,19 +22,27 @@ class _MedicamentosPageState extends State<MedicamentosPage> {
   late ObservableList<Medicamento> remediosPesq =
       new ObservableList<Medicamento>();
 
-  List<Medicamento> remedios = [
-    new Medicamento.contrutor(1, "rivotril", "remedio pra doido"),
-    new Medicamento.contrutor(2, "paracetamal", "remedio pra dor"),
-    new Medicamento.contrutor(3, "omeprazol", "remedio pra barriga"),
-    //new Medicamento.contrutor(4, "viagra", "remedio pra broxa"),
-    new Medicamento.contrutor(5, "diazepan", "remedio pra estressado"),
-  ];
+  List<Medicamento> remedios = [];
+
+  void loadList() async {
+    var medicineList = await medicineService.listAll(); 
+    for (int i = 0; i < medicineList.length; i++) {
+      var aux = new Medicamento.contrutor(medicineList[i]['id'], medicineList[i]['alias'], medicineList[i]['description']);
+      aux.indicacoes = medicineList[i]['indications'];
+      aux.contraindicacoes = medicineList[i]['contraindications'];
+      aux.posologia = medicineList[i]['posology'];
+      remedios.add(
+        aux
+      );
+    }
+    remediosPesq.addAll(remedios);
+  }
 
   @override
   void initState() {
     super.initState();
     editingController.text = '';
-    remediosPesq.addAll(remedios);
+    loadList();
   }
 
   filterSearchResults(String query) {
@@ -148,7 +157,13 @@ class _MedicamentosPageState extends State<MedicamentosPage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => MedicineLeaflet()),
+                                      builder: (context) => MedicineLeaflet(
+                                        '${remediosPesq[index].name}',
+                                        '${remediosPesq[index].bula}',
+                                        '${remediosPesq[index].indicacoes}',
+                                        '${remediosPesq[index].contraindicacoes}',
+                                        '${remediosPesq[index].posologia}'
+                                      )),
                                 );
                               },
                             ),

@@ -22,7 +22,7 @@ class _CadastroPageState extends State<CadastroPage> {
 
     Future<void> navigationPage() async {
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+          MaterialPageRoute(builder: (BuildContext context) => MedicamentosPage()));
     }
 
     return MaterialApp(

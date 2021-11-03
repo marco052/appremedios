@@ -15,6 +15,12 @@ class AppTextStyles {
     color: AppColors.buttonText
   );
 
+  static final interBoldText = GoogleFonts.inter(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+    color: AppColors.title
+  );
+
   static final interText = GoogleFonts.inter(
     fontSize: 18,
     fontWeight: FontWeight.w500,

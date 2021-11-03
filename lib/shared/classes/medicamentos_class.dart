@@ -2,6 +2,9 @@ class Medicamento {
   late num id;
   late String name;
   late String bula;
+  late String indicacoes;
+  late String contraindicacoes;
+  late String posologia;
   late String hora;
 
   Medicamento();
