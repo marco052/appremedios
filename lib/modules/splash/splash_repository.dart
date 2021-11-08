@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:pharmacy_wiki/app/pages/Medicamentos/medicamentos_page.dart';
+import 'package:pharmacy_wiki/modules/medicines/medicamentos_page.dart';
 
 class SplashPage extends StatefulWidget {
   @override
