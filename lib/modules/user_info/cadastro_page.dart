@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pharmacy_wiki/modules/home/home.dart';
+import 'package:pharmacy_wiki/shared/classes/user.dart';
 import 'package:pharmacy_wiki/shared/data/connection.dart';
 import 'package:pharmacy_wiki/shared/theme/app_colors.dart';
 import 'package:pharmacy_wiki/shared/theme/app_images.dart';
@@ -17,21 +18,73 @@ class CadastroPage extends StatefulWidget {
 class _CadastroPageState extends State<CadastroPage> {
   bool value = false;
   int val = -1;
+  List<User> userInfo = [];
+  final nameController = TextEditingController();
+  final birthdayController = TextEditingController();
+  final sexController = TextEditingController();
+  final heightController = TextEditingController();
+  final weightController = TextEditingController();
+
+  Future<void> navigationPage() async {
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+  }
+
+  Future<void> onInit() async {
+    Connection conn = Connection();
+    userInfo = await conn.getUserInfo();
+    if (userInfo[0].value.length > 0) {
+      navigationPage();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) => onInit());
+  }
+
+  void saveUserInfo() async {
+    Connection conn = Connection();
+    
+    for (var i = 0; i < userInfo.length; i++) {
+      String type = userInfo[0].alias;
+      String value = "";
+
+      switch (type) {
+        case 'NAME':
+          value = nameController.text;
+          break;
+        case 'BIRTHDAY':
+          value = birthdayController.text;
+          break;
+        case 'SEX':
+          break;
+        case 'HEIGHT':
+          value = heightController.text;
+          break;
+        case 'WEIGHT':
+          value = weightController.text;
+          break;
+        default:
+          break;
+      }
+      
+      User updated = User(
+        id: userInfo[0].id,
+        alias: userInfo[0].alias,
+        value: value
+      );
+
+      conn.updateUserInfo(updated);
+    }
+
+    navigationPage();
+  }
+
+
   @override
   Widget build(BuildContext context) {
-
-    Future<void> navigationPage() async {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-    }
-
-    Future<void> getUserInfo() async {
-      Connection conn = Connection();
-      print(await conn.getUserInfo());
-    }
-
-    getUserInfo();
-
     return MaterialApp(
         title: "PharmacyWiki",
         theme: ThemeData(primaryColor: Colors.blue[200]),
@@ -66,6 +119,7 @@ class _CadastroPageState extends State<CadastroPage> {
                               child: TextFormField(
                                 autofocus: false,
                                 textAlign: TextAlign.left,
+                                controller: nameController,
                                 decoration: InputDecoration(
                                   floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
@@ -87,6 +141,7 @@ class _CadastroPageState extends State<CadastroPage> {
                               child: TextFormField(
                                 autofocus: false,
                                 textAlign: TextAlign.left,
+                                controller: birthdayController,
                                 decoration: InputDecoration(
                                   floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
@@ -137,6 +192,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                 child: TextFormField(
                                   autofocus: false,
                                   textAlign: TextAlign.left,
+                                  controller: heightController,
                                   decoration: InputDecoration(
                                     floatingLabelBehavior:
                                         FloatingLabelBehavior.always,
@@ -156,6 +212,7 @@ class _CadastroPageState extends State<CadastroPage> {
                                 child: TextFormField(
                                   autofocus: false,
                                   textAlign: TextAlign.left,
+                                  controller: weightController,
                                   decoration: InputDecoration(
                                     floatingLabelBehavior:
                                         FloatingLabelBehavior.always,
@@ -190,7 +247,7 @@ class _CadastroPageState extends State<CadastroPage> {
                               style: AppTextStyles.buttonText,
                             ),
                             onPressed: () {
-                              navigationPage();
+                              saveUserInfo();
                             },
                           ),
                         ),

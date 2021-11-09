@@ -4,6 +4,8 @@ import 'package:mobx/mobx.dart';
 import 'package:pharmacy_wiki/modules/medicines/medicamentos_page.dart';
 import 'package:pharmacy_wiki/shared/classes/horarioMedicamentos.dart';
 import 'package:pharmacy_wiki/shared/classes/medicamentos_class.dart';
+import 'package:pharmacy_wiki/shared/classes/user.dart';
+import 'package:pharmacy_wiki/shared/data/connection.dart';
 import 'package:pharmacy_wiki/shared/theme/app_colors.dart';
 import 'package:pharmacy_wiki/shared/theme/app_text_styles.dart';
 
@@ -17,6 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   DateTime hoje = DateTime.now();
+  String userName = '';
 
   List<AlarmeMed> alarmes = [
     new AlarmeMed.construtor("paracetamol", "Utilizar 1 comprimido", "14:00"),
@@ -80,13 +83,27 @@ class _HomePageState extends State<HomePage> {
     return "Dia $dia de $mes, $ano";
   }
 
+  Future<void> onInit() async {
+    Connection conn = Connection();
+    List<User> userInfo = await conn.getUserInfo();
+    setState((){ 
+      this.userName = userInfo[0].value.split(' ')[0];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) => onInit());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
         backgroundColor: AppColors.primary,
         title: Text(
-          "Olá, Marquinho",
+          "Olá, $userName",
           style: AppTextStyles.interBoldTitle,
         ),
       ),
