@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:pharmacy_wiki/modules/home/home.dart';
-import 'package:pharmacy_wiki/modules/medicines/medicamentos_page.dart';
+import 'package:pharmacy_wiki/shared/data/connection.dart';
 import 'package:pharmacy_wiki/shared/theme/app_colors.dart';
 import 'package:pharmacy_wiki/shared/theme/app_images.dart';
 import 'package:pharmacy_wiki/shared/theme/app_text_styles.dart';
@@ -22,18 +22,25 @@ class _CadastroPageState extends State<CadastroPage> {
 
     Future<void> navigationPage() async {
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext context) => MedicamentosPage()));
+          MaterialPageRoute(builder: (BuildContext context) => HomePage()));
     }
+
+    Future<void> getUserInfo() async {
+      Connection conn = Connection();
+      print(await conn.getUserInfo());
+    }
+
+    getUserInfo();
 
     return MaterialApp(
         title: "PharmacyWiki",
         theme: ThemeData(primaryColor: Colors.blue[200]),
         home: Scaffold(
-            backgroundColor: Colors.blue[50],
+            backgroundColor: AppColors.background,
             body: SingleChildScrollView(
               child: Container(
                   width: double.infinity,
-                  color: Colors.blue[50],
+                  color: AppColors.background,
                   child: () {
                     return Column(
                       mainAxisSize: MainAxisSize.max,

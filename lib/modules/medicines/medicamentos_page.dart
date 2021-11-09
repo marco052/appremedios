@@ -5,7 +5,7 @@ import 'package:mobx/mobx.dart';
 import 'package:pharmacy_wiki/modules/leaflet/medicine_leaflet.dart';
 import 'package:pharmacy_wiki/shared/classes/medicamentos_class.dart';
 import 'package:pharmacy_wiki/shared/theme/app_colors.dart';
-import 'package:pharmacy_wiki/services/medicine.dart' as medicineService;
+import 'package:pharmacy_wiki/shared/services/medicine.dart' as medicineService;
 
 class MedicamentosPage extends StatefulWidget {
   const MedicamentosPage({Key? key}) : super(key: key);
