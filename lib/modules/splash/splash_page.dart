@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:pharmacy_wiki/modules/home/home.dart';
 import 'package:pharmacy_wiki/modules/medicines/medicamentos_page.dart';
 import 'package:pharmacy_wiki/modules/user_info/cadastro_page.dart';
+import 'package:pharmacy_wiki/shared/data/connection.dart';
 import 'package:pharmacy_wiki/shared/theme/app_images.dart';
 
 class SplashPage extends StatefulWidget {
@@ -19,8 +21,16 @@ class _SplashPageState extends State<SplashPage> {
 
   startTime() async {
     var _duration = new Duration(seconds: 3);
-    // ignore: await_only_futures
-    return await Timer(_duration, navigationPage);
+    Connection conn = Connection();
+    var userInfo = await conn.getUserInfo();
+    if (userInfo[0].value.length > 0) {
+      return Timer(_duration, () => {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()))
+      });
+    }
+    else {
+      return Timer(_duration, navigationPage);
+    }
   }
 
   Future<void> navigationPage() async {

@@ -33,9 +33,6 @@ class _CadastroPageState extends State<CadastroPage> {
   Future<void> onInit() async {
     Connection conn = Connection();
     userInfo = await conn.getUserInfo();
-    if (userInfo[0].value.length > 0) {
-      navigationPage();
-    }
   }
 
   @override

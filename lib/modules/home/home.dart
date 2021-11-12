@@ -4,6 +4,7 @@ import 'package:mobx/mobx.dart';
 import 'package:pharmacy_wiki/modules/medicines/medicamentos_page.dart';
 import 'package:pharmacy_wiki/shared/classes/horarioMedicamentos.dart';
 import 'package:pharmacy_wiki/shared/classes/medicamentos_class.dart';
+import 'package:pharmacy_wiki/shared/classes/scheduled_medicine.dart';
 import 'package:pharmacy_wiki/shared/classes/user.dart';
 import 'package:pharmacy_wiki/shared/data/connection.dart';
 import 'package:pharmacy_wiki/shared/theme/app_colors.dart';
@@ -20,10 +21,8 @@ class _HomePageState extends State<HomePage> {
 
   DateTime hoje = DateTime.now();
   String userName = '';
-
-  List<AlarmeMed> alarmes = [
-    new AlarmeMed.construtor("paracetamol", "Utilizar 1 comprimido", "14:00"),
-  ];
+  List<ScheduledMedicine> medicines = [];
+  List<AlarmeMed> alarmes = [];
 
   Future<void> navigationPage() async {
     Navigator.push(
@@ -89,6 +88,85 @@ class _HomePageState extends State<HomePage> {
     setState((){ 
       this.userName = userInfo[0].value.split(' ')[0];
     });
+    medicines = await conn.getMedicines();
+    if (medicines.length == 0) {
+      final aux = new ScheduledMedicine(
+        id: 0, 
+        name: 'Teste', 
+        quantity: 1, 
+        type: 'COMPRIMIDOS', 
+        frequency: new Frequency(isRoutine: false, schedule: [], noRoutine: DateTime.now().toIso8601String())
+      );
+
+      final aux2 = new ScheduledMedicine(
+        id: 1, 
+        name: 'Teste 2', 
+        quantity: 5, 
+        type: 'ml', 
+        frequency: new Frequency(isRoutine: true, schedule: [[],[],[],[DateTime.now().toIso8601String()],[],[],[]], noRoutine: '')
+      );
+
+      await conn.insertMedicine(aux);
+      await conn.insertMedicine(aux2);
+      medicines = await conn.getMedicines();
+    }
+
+    updateSchedule();
+  }
+
+  void addDay() {
+    setState((){ this.hoje = this.hoje.add(Duration(days: 1)); });
+    updateSchedule();
+  }
+
+  void backDay() {
+    setState((){ this.hoje = this.hoje.add(Duration(days: -1)); });
+    updateSchedule();
+  }
+
+  void updateSchedule() {
+
+    List<AlarmeMed> alarmsToAdd = [];
+
+    for (ScheduledMedicine medicine in medicines) {
+      if (medicine.frequency.isRoutine) {
+
+        for (String hour in medicine.frequency.schedule[hoje.weekday-1]) {
+          DateTime time = DateTime.parse(hour);
+          String hr = "0" + time.hour.toString();
+          hr = hr.substring(hr.length - 2);
+          String min = "0" + time.minute.toString();
+          min = min.substring(min.length - 2);
+
+          alarmsToAdd.add(new AlarmeMed.construtor(
+            medicine.name, 'Utilizar ${medicine.quantity} ${medicine.type}', '$hr:$min'
+          ));
+        }
+
+      } else {
+
+        DateTime time = DateTime.parse(medicine.frequency.noRoutine);
+
+        if (time.day == hoje.day && time.month == hoje.month && time.year == hoje.year) {
+
+          String hr = "0" + time.hour.toString();
+          hr = hr.substring(hr.length - 2);
+          String min = "0" + time.minute.toString();
+          min = min.substring(min.length - 2);
+
+          alarmsToAdd.add(new AlarmeMed.construtor(
+            medicine.name, 'Utilizar ${medicine.quantity} ${medicine.type}', '$hr:$min'
+          ));
+
+        }
+
+      }
+    }
+
+    setState(() {
+      alarmes = alarmsToAdd;
+    });
+
   }
 
   @override
@@ -120,7 +198,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   IconButton(
                     icon: Icon(Icons.arrow_back_ios, color: AppColors.text, size: 30),
-                    onPressed: () => { setState((){ this.hoje = this.hoje.add(Duration(days: -1)); }) },
+                    onPressed: backDay,
                   ),
                   Text(
                     convertTime(hoje),
@@ -128,7 +206,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   IconButton(
                     icon: Icon(Icons.arrow_forward_ios, color: AppColors.text, size: 30,),
-                    onPressed: () => { setState((){ this.hoje = this.hoje.add(Duration(days: 1)); }) },
+                    onPressed: addDay,
                   ),
                 ],
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
