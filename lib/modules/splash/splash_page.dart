@@ -1,6 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:pharmacy_wiki/modules/home/home.dart';
+=======
+import 'package:pharmacy_wiki/modules/medicines/add_med_page.dart';
+>>>>>>> 1f03480e7b12491ee9fc0bad684431060cdce9b9
 import 'package:pharmacy_wiki/modules/medicines/medicamentos_page.dart';
 import 'package:pharmacy_wiki/modules/user_info/cadastro_page.dart';
 import 'package:pharmacy_wiki/shared/data/connection.dart';
@@ -34,13 +38,12 @@ class _SplashPageState extends State<SplashPage> {
   }
 
   Future<void> navigationPage() async {
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext context) => CadastroPage()));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (BuildContext context) => AddPg()));
   }
 
   @override
   Widget build(BuildContext context) {
-
     final window = MediaQuery.of(context).size;
 
     return Container(
