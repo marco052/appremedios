@@ -1,11 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:pharmacy_wiki/modules/home/home.dart';
-=======
-import 'package:pharmacy_wiki/modules/medicines/add_med_page.dart';
->>>>>>> 1f03480e7b12491ee9fc0bad684431060cdce9b9
-import 'package:pharmacy_wiki/modules/medicines/medicamentos_page.dart';
 import 'package:pharmacy_wiki/modules/user_info/cadastro_page.dart';
 import 'package:pharmacy_wiki/shared/data/connection.dart';
 import 'package:pharmacy_wiki/shared/theme/app_images.dart';
@@ -28,18 +23,18 @@ class _SplashPageState extends State<SplashPage> {
     Connection conn = Connection();
     var userInfo = await conn.getUserInfo();
     if (userInfo[0].value.length > 0) {
-      return Timer(_duration, () => {
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => HomePage()))
-      });
+      return Timer(_duration, navigationPage);
     }
     else {
-      return Timer(_duration, navigationPage);
+      return Timer(_duration, () => {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) => CadastroPage()))
+      });
     }
   }
 
   Future<void> navigationPage() async {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (BuildContext context) => AddPg()));
+        context, MaterialPageRoute(builder: (BuildContext context) => HomePage()));
   }
 
   @override
