@@ -83,34 +83,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> onInit() async {
-    Connection conn = Connection();
-    List<User> userInfo = await conn.getUserInfo();
-    setState((){ 
-      this.userName = userInfo[0].value.split(' ')[0];
-    });
-    medicines = await conn.getMedicines();
-    if (medicines.length == 0) {
-      final aux = new ScheduledMedicine(
-        id: 0, 
-        name: 'Teste', 
-        quantity: 1, 
-        type: 'COMPRIMIDOS', 
-        frequency: new Frequency(isRoutine: false, schedule: [], noRoutine: DateTime.now().toIso8601String())
-      );
-
-      final aux2 = new ScheduledMedicine(
-        id: 1, 
-        name: 'Teste 2', 
-        quantity: 5, 
-        type: 'ml', 
-        frequency: new Frequency(isRoutine: true, schedule: [[],[],[],[DateTime.now().toIso8601String()],[],[],[]], noRoutine: '')
-      );
-
-      await conn.insertMedicine(aux);
-      await conn.insertMedicine(aux2);
-      medicines = await conn.getMedicines();
-    }
-
     updateSchedule();
   }
 
@@ -124,7 +96,15 @@ class _HomePageState extends State<HomePage> {
     updateSchedule();
   }
 
-  void updateSchedule() {
+  void updateSchedule() async {
+
+    Connection conn = Connection();
+    List<User> userInfo = await conn.getUserInfo();
+    setState((){ 
+      this.userName = userInfo[0].value.split(' ')[0];
+    });
+    medicines = await conn.getMedicines();
+    print(medicines);
 
     List<AlarmeMed> alarmsToAdd = [];
 

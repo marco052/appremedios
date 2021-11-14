@@ -21,6 +21,12 @@ class AppTextStyles {
     color: AppColors.title
   );
 
+  static final interBoldLabel = GoogleFonts.inter(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    color: AppColors.title
+  );
+
   static final interText = GoogleFonts.inter(
     fontSize: 18,
     fontWeight: FontWeight.w500,
@@ -57,9 +63,21 @@ class AppTextStyles {
     color: AppColors.buttonText
   );
 
+  static final bigButtonText = GoogleFonts.jost(
+    fontSize: 24,
+    fontWeight: FontWeight.w500,
+    color: AppColors.buttonText
+  );
+
   static final linkColor = GoogleFonts.inter(
     fontSize: 14,
     fontWeight: FontWeight.w500,
     color: AppColors.primary
+  );
+
+  static final placeholder = GoogleFonts.inter(
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppColors.placeholder
   );
 }

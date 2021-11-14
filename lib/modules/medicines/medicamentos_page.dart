@@ -5,7 +5,7 @@ import 'package:mobx/mobx.dart';
 import 'package:pharmacy_wiki/modules/leaflet/medicine_leaflet.dart';
 import 'package:pharmacy_wiki/shared/classes/medicamentos_class.dart';
 import 'package:pharmacy_wiki/shared/theme/app_colors.dart';
-import 'package:pharmacy_wiki/modules/medicines/add_med_page.dart';
+import 'package:pharmacy_wiki/modules/add_medicine/add_medicine.dart';
 import 'package:pharmacy_wiki/shared/services/medicine.dart' as medicineService;
 
 class MedicamentosPage extends StatefulWidget {
@@ -171,7 +171,7 @@ class _MedicamentosPageState extends State<MedicamentosPage> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => AddPg()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => AddMedicine(remediosPesq[index])));
                         },
                       ),
                     ),
