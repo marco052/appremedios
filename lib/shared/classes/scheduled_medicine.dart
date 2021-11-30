@@ -45,13 +45,15 @@ class ScheduledMedicine {
   final int quantity;
   final String type;
   final Frequency frequency;
+  final int? reason;
 
   ScheduledMedicine({
     required this.id,
     required this.name,
     required this.quantity,
     required this.type,
-    required this.frequency
+    required this.frequency,
+    required this.reason
   });
 
   Map<String, dynamic> toMap() {
@@ -64,12 +66,13 @@ class ScheduledMedicine {
       'name': name,
       'quantity': quantity,
       'type': type,
-      'frequency': feq
+      'frequency': feq,
+      'reason': reason
     };
   }
 
   @override
   String toString() {
-    return "Medicine{id: $id, name: $name, quantity: $quantity, type: $type, frequency: '${frequency.toString()}'}";
+    return "Medicine{id: $id, name: $name, quantity: $quantity, type: $type, frequency: '${frequency.toString()}', reason $reason}";
   }
 }

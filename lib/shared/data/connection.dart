@@ -14,10 +14,10 @@ class Connection {
       join(await getDatabasesPath(), 'pharmacy_wiki.db'),
       onCreate: (db, version) async {
         await db.execute("CREATE TABLE user(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, alias TEXT NOT NULL, value TEXT)");
-        await db.execute("CREATE TABLE medicine(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT NOT NULL, quantity INTEGER, type TEXT, frequency TEXT)");
+        await db.execute("CREATE TABLE medicine(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT NOT NULL, quantity INTEGER, type TEXT, frequency TEXT, reason INTEGER NULL)");
         await db.execute("INSERT INTO user(alias, value) VALUES ('NAME', ''), ('BIRTHDAY', ''), ('SEX', ''), ('HEIGHT', ''), ('WEIGHT', '')");
       },
-      version: 1
+      version: 2
     );
 
     return database;
@@ -49,7 +49,8 @@ class Connection {
         name: maps[i]['name'],
         type: maps[i]['type'],
         quantity: maps[i]['quantity'],
-        frequency: Frequency.fromJson(jsonDecoder.convert(maps[i]['frequency']))
+        frequency: Frequency.fromJson(jsonDecoder.convert(maps[i]['frequency'])),
+        reason: maps[i]['reason']
       );
     });
   }

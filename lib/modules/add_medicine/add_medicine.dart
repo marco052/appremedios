@@ -121,7 +121,8 @@ class _AddMedicineState extends State<AddMedicine>
               isRoutine: this._typeValue == 'Único' ? false : true, 
               schedule: schedules,
               noRoutine: uniqueSchedule
-            )
+            ),
+            reason: null
           );
 
           Connection conn = new Connection();
