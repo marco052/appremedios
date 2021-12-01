@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pharmacy_wiki/modules/medicines/medicamentos_page.dart';
+import 'package:pharmacy_wiki/modules/notifications/notification_service.dart';
 import 'package:pharmacy_wiki/shared/classes/horarioMedicamentos.dart';
 import 'package:pharmacy_wiki/shared/classes/medicamentos_class.dart';
 import 'package:pharmacy_wiki/shared/classes/scheduled_medicine.dart';
@@ -9,12 +11,16 @@ import 'package:pharmacy_wiki/shared/classes/user.dart';
 import 'package:pharmacy_wiki/shared/data/connection.dart';
 import 'package:pharmacy_wiki/shared/theme/app_colors.dart';
 import 'package:pharmacy_wiki/shared/theme/app_text_styles.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
+
+  
 }
 
 class _HomePageState extends State<HomePage> {
@@ -149,10 +155,13 @@ class _HomePageState extends State<HomePage> {
 
   }
 
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) => onInit());
+    
+    tz.initializeTimeZones();
   }
 
   @override
@@ -255,7 +264,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              height: 40,
+              height: 25,
             ),
             SizedBox(
               width: 200,
@@ -273,7 +282,8 @@ class _HomePageState extends State<HomePage> {
                   style: AppTextStyles.buttonText,
                 ),
                 onPressed: () {
-                  navigationPage();
+                  NotificationService().showNotification(1, "title", "body", 5);
+                  //navigationPage();
                 },
               ),
             )
