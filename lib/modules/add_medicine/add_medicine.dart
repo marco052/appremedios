@@ -63,22 +63,6 @@ class _AddMedicineState extends State<AddMedicine>
     'Enjoo': 3
   };
 
-  int reactionId(String reaction) {
-    switch (reaction) {
-      case 'Sonolência':
-        return 1;
-
-      case 'Ingestão de Alcool':
-        return 2;
-
-      case 'Enjoo':
-        return 3;
-
-      default:
-        return 0;
-    }
-  }
-
   Map<int, String> week = {
     DateTime.monday: 'Segunda-Feira',
     DateTime.tuesday: 'Terça-Feira',
