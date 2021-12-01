@@ -131,28 +131,26 @@ class _HomePageState extends State<HomePage> {
   }
 
   void programNotifications() {
+    LocalNotification().cancelAllNotifications();
     for (var i in medicines) {
-      print("remediio: ${i}");
       if (i.frequency.isRoutine) {
-        print("freq: ${i.frequency.isRoutine}");
         var medicinesToday = i.frequency.schedule[DateTime.now().weekday-1];
         
         for(var m in medicinesToday){
           var hour1 = DateTime.parse(m);
-          print("hora1: ${hour1}");
-          if(hour1.isAfter(DateTime.now()) && !notificationsId.contains(i.id)){
+          if(hour1.isAfter(DateTime.now())){
             LocalNotification().displayScheduledNotification(
               "Hora do ${i.name}!",
               "Lembre-se de tomar ${i.quantity} ${i.type} do remédio!",
               hour1, 
             );
-            notificationsId.add(i.id!);
           }
         }  
       } else {
         print("foi não boy");
         var hour1 = DateTime.parse(i.frequency.noRoutine);
-        if(hour1.isAfter(DateTime.now())){
+        var today = DateTime.now();
+        if(hour1.isAfter(today) && hour1.day == today.day && hour1.month == today.month && hour1.year == today.year){
           LocalNotification().displayScheduledNotification(
             "Hora do ${i.name}!",
               "Lembre-se de tomar ${i.quantity} ${i.type} do remédio!",
@@ -211,6 +209,8 @@ class _HomePageState extends State<HomePage> {
         }
       }
     }
+
+    programNotifications();
 
     setState(() {
       alarmes = alarmsToAdd;
