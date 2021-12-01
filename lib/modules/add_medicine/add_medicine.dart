@@ -28,10 +28,15 @@ extension DateTimeExtension on DateTime {
 
 class AddMedicine extends StatefulWidget {
   final Medicamento _selectedMedicine;
-  const AddMedicine(this._selectedMedicine, {Key? key}) : super(key: key);
+  final int? id;
+  const AddMedicine(
+    this._selectedMedicine, {
+    this.id,
+    Key? key,
+  }) : super(key: key);
 
   @override
-  _AddMedicineState createState() => _AddMedicineState(_selectedMedicine);
+  _AddMedicineState createState() => _AddMedicineState(id, _selectedMedicine);
 }
 
 class _AddMedicineState extends State<AddMedicine>
@@ -39,7 +44,11 @@ class _AddMedicineState extends State<AddMedicine>
   late AnimationController _controller;
 
   final Medicamento _selectedMedicine;
-  _AddMedicineState(this._selectedMedicine);
+  final int? id;
+  _AddMedicineState(
+    this.id,
+    this._selectedMedicine,
+  );
 
   List<String> _types = ['Frequente', "Único"];
   String _typeValue = 'Frequente';
@@ -108,7 +117,7 @@ class _AddMedicineState extends State<AddMedicine>
 
         if (validQuantity != null) {
           ScheduledMedicine scheduledMedicine = new ScheduledMedicine(
-              id: null,
+              id: id,
               name: this._selectedMedicine.name,
               quantity: validQuantity,
               type: this._dosageTypeValue,

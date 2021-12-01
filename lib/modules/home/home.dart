@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
+import 'package:pharmacy_wiki/modules/add_medicine/add_medicine.dart';
 import 'package:pharmacy_wiki/modules/medicines/medicamentos_page.dart';
 import 'package:pharmacy_wiki/modules/notifications/notification_service.dart';
 import 'package:pharmacy_wiki/shared/classes/horarioMedicamentos.dart';
@@ -14,18 +15,16 @@ import 'package:pharmacy_wiki/shared/theme/app_colors.dart';
 import 'package:pharmacy_wiki/shared/theme/app_text_styles.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
+import 'package:pharmacy_wiki/shared/services/medicine.dart' as medicineService;
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
-
-  
 }
 
 class _HomePageState extends State<HomePage> {
-
   DateTime hoje = DateTime.now();
   String userName = '';
   List<ScheduledMedicine> medicines = [];
@@ -38,13 +37,36 @@ class _HomePageState extends State<HomePage> {
             builder: (BuildContext context) => MedicamentosPage()));
   }
 
+  Medicamento? getElementByName(String name) {
+    for (int i = 0; i < remedios.length; i++) {
+      if (remedios[i].name == name) {
+        return remedios[i];
+      }
+    }
+    return null;
+  }
+
+  List<Medicamento> remedios = [];
+
+  void loadList() async {
+    var medicineList = await medicineService.listAll();
+    for (int i = 0; i < medicineList.length; i++) {
+      var aux = new Medicamento.contrutor(medicineList[i]['id'],
+          medicineList[i]['alias'], medicineList[i]['description']);
+      aux.indicacoes = medicineList[i]['indications'];
+      aux.contraindicacoes = medicineList[i]['contraindications'];
+      aux.posologia = medicineList[i]['posology'];
+      remedios.add(aux);
+    }
+  }
+
   String convertTime(DateTime time) {
     String dia = "0" + time.day.toString();
     dia = dia.substring(dia.length - 2);
 
     String mes = 'Janeiro';
 
-    switch(time.month) {
+    switch (time.month) {
       case 1:
         mes = 'Janeiro';
         break;
@@ -90,24 +112,28 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future<void> onInit() async {
+    loadList();
     updateSchedule();
   }
 
   void addDay() {
-    setState((){ this.hoje = this.hoje.add(Duration(days: 1)); });
+    setState(() {
+      this.hoje = this.hoje.add(Duration(days: 1));
+    });
     updateSchedule();
   }
 
   void backDay() {
-    setState((){ this.hoje = this.hoje.add(Duration(days: -1)); });
+    setState(() {
+      this.hoje = this.hoje.add(Duration(days: -1));
+    });
     updateSchedule();
   }
 
   void updateSchedule() async {
-
     Connection conn = Connection();
     List<User> userInfo = await conn.getUserInfo();
-    setState((){ 
+    setState(() {
       this.userName = userInfo[0].value.split(' ')[0];
     });
     medicines = await conn.getMedicines();
@@ -117,8 +143,7 @@ class _HomePageState extends State<HomePage> {
 
     for (ScheduledMedicine medicine in medicines) {
       if (medicine.frequency.isRoutine) {
-
-        for (String hour in medicine.frequency.schedule[hoje.weekday-1]) {
+        for (String hour in medicine.frequency.schedule[hoje.weekday - 1]) {
           DateTime time = DateTime.parse(hour);
           String hr = "0" + time.hour.toString();
           hr = hr.substring(hr.length - 2);
@@ -126,44 +151,43 @@ class _HomePageState extends State<HomePage> {
           min = min.substring(min.length - 2);
 
           alarmsToAdd.add(new AlarmeMed.construtor(
-            medicine.name, 'Utilizar ${medicine.quantity} ${medicine.type}', '$hr:$min',
-            (medicine.reason != null && medicine.reason! > 0)
-          ));
+              medicine.id!,
+              medicine.name,
+              'Utilizar ${medicine.quantity} ${medicine.type}',
+              '$hr:$min',
+              (medicine.reason != null && medicine.reason! > 0)));
         }
-
       } else {
-
         DateTime time = DateTime.parse(medicine.frequency.noRoutine);
 
-        if (time.day == hoje.day && time.month == hoje.month && time.year == hoje.year) {
-
+        if (time.day == hoje.day &&
+            time.month == hoje.month &&
+            time.year == hoje.year) {
           String hr = "0" + time.hour.toString();
           hr = hr.substring(hr.length - 2);
           String min = "0" + time.minute.toString();
           min = min.substring(min.length - 2);
 
           alarmsToAdd.add(new AlarmeMed.construtor(
-            medicine.name, 'Utilizar ${medicine.quantity} ${medicine.type}', '$hr:$min', 
-            (medicine.reason != null && medicine.reason! > 0)
-          ));
-
+              medicine.id!,
+              medicine.name,
+              'Utilizar ${medicine.quantity} ${medicine.type}',
+              '$hr:$min',
+              (medicine.reason != null && medicine.reason! > 0)));
         }
-
       }
     }
 
     setState(() {
       alarmes = alarmsToAdd;
     });
-
   }
-
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) => onInit());
-    
+
     tz.initializeTimeZones();
   }
 
@@ -189,7 +213,8 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 children: [
                   IconButton(
-                    icon: Icon(Icons.arrow_back_ios, color: AppColors.text, size: 30),
+                    icon: Icon(Icons.arrow_back_ios,
+                        color: AppColors.text, size: 30),
                     onPressed: backDay,
                   ),
                   Text(
@@ -197,7 +222,11 @@ class _HomePageState extends State<HomePage> {
                     style: AppTextStyles.interBoldText,
                   ),
                   IconButton(
-                    icon: Icon(Icons.arrow_forward_ios, color: AppColors.text, size: 30,),
+                    icon: Icon(
+                      Icons.arrow_forward_ios,
+                      color: AppColors.text,
+                      size: 30,
+                    ),
                     onPressed: addDay,
                   ),
                 ],
@@ -242,15 +271,17 @@ class _HomePageState extends State<HomePage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              alarmes[index].hasRestriction ?
-                              Flexible(
-                                child: Icon(
-                                  Icons.warning,
-                                  size: 15,
-                                  color: AppColors.warning,
-                                ),
-                              ) :
-                              SizedBox(width: 15,),
+                              alarmes[index].hasRestriction
+                                  ? Flexible(
+                                      child: Icon(
+                                        Icons.warning,
+                                        size: 15,
+                                        color: AppColors.warning,
+                                      ),
+                                    )
+                                  : SizedBox(
+                                      width: 15,
+                                    ),
                               Flexible(
                                 child: Icon(
                                   Icons.alarm,
@@ -268,7 +299,16 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      AddMedicine(
+                                          getElementByName(
+                                              alarmes[index].medicamento)!,
+                                          id: alarmes[index].id)));
+                        },
                       ),
                     ),
                   );
@@ -294,7 +334,8 @@ class _HomePageState extends State<HomePage> {
                   style: AppTextStyles.buttonText,
                 ),
                 onPressed: () {
-                  LocalNotification().displayScheduledNotification('Oi', 'Luscas', DateTime.now().add(Duration(minutes: 1)));
+                  LocalNotification().displayScheduledNotification(
+                      'Oi', 'Luscas', DateTime.now().add(Duration(minutes: 1)));
                   //navigationPage();
                 },
               ),
