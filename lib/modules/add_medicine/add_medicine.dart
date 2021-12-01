@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:collection/collection.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pharmacy_wiki/modules/home/home.dart';
 import 'package:pharmacy_wiki/modules/leaflet/medicine_leaflet.dart';
 import 'package:pharmacy_wiki/shared/classes/medicamentos_class.dart';
@@ -202,6 +203,14 @@ class _AddMedicineState extends State<AddMedicine>
       primary: true,
       appBar: new AppBar(
         backgroundColor: AppColors.primary,
+        title: Text(
+          'Adicionar Medicamento',
+          style: GoogleFonts.inter(
+            fontSize: 25,
+            fontWeight: FontWeight.w700,
+            color: Colors.white
+          )
+        ),
       ),
       backgroundColor: AppColors.background,
       body: SingleChildScrollView(
@@ -213,13 +222,10 @@ class _AddMedicineState extends State<AddMedicine>
             child: Column(
               children: [
                 Container(
-                  height: 180,
+                  height: 110,
                   width: MediaQuery.of(context).size.width - 20,
                   child: Column(children: [
-                    SizedBox(height: 20),
-                    Text('Adicionar Medicamento',
-                        style: AppTextStyles.interRegularTitle),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     Container(
                       width: MediaQuery.of(context).size.width - 20,
                       height: 70,
@@ -261,7 +267,7 @@ class _AddMedicineState extends State<AddMedicine>
                   ]),
                 ), // HEADER
                 Container(
-                  height: MediaQuery.of(context).size.height - 350,
+                  height: MediaQuery.of(context).size.height - 280,
                   width: MediaQuery.of(context).size.width - 20,
                   child: SingleChildScrollView(
                     controller: _scrollController,

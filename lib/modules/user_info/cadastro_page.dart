@@ -90,6 +90,7 @@ class _CadastroPageState extends State<CadastroPage> {
             body: SingleChildScrollView(
               child: Container(
                   width: double.infinity,
+                  height: MediaQuery.of(context).size.height,
                   color: AppColors.background,
                   child: () {
                     return Column(
@@ -97,16 +98,16 @@ class _CadastroPageState extends State<CadastroPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         SizedBox(
-                          height: 30,
+                          height: 15,
                         ),
                         Text("Podemos te conhecer melhor?",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontFamily: "Antonio",
-                                fontSize: 40,
+                                fontSize: 37,
                                 fontWeight: FontWeight.normal)),
                         SizedBox(
-                          height: 50,
+                          height: 25,
                         ),
                         (Image.asset(AppImages.doctors)),
                         Row(children: <Widget>[
@@ -121,12 +122,12 @@ class _CadastroPageState extends State<CadastroPage> {
                                   floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
                                   hintStyle: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                      color: Colors.grey[500],
+                                      fontWeight: FontWeight.normal),
                                   labelText: 'Nome',
                                   labelStyle: TextStyle(
                                       color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.normal),
                                   hintText: 'Marquinho Antoninho',
                                 ),
                               )),
@@ -143,12 +144,12 @@ class _CadastroPageState extends State<CadastroPage> {
                                   floatingLabelBehavior:
                                       FloatingLabelBehavior.always,
                                   hintStyle: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                      color: Colors.grey[500],
+                                      fontWeight: FontWeight.normal),
                                   labelText: 'Data de nascimento',
                                   labelStyle: TextStyle(
                                       color: Colors.black,
-                                      fontWeight: FontWeight.bold),
+                                      fontWeight: FontWeight.normal),
                                   hintText: '01/10/2021',
                                 ),
                               )),
@@ -194,12 +195,12 @@ class _CadastroPageState extends State<CadastroPage> {
                                     floatingLabelBehavior:
                                         FloatingLabelBehavior.always,
                                     hintStyle: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
+                                        color: Colors.grey[500],
+                                      fontWeight: FontWeight.normal),
                                     labelText: 'Altura',
                                     labelStyle: TextStyle(
                                         color: Colors.black,
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.normal),
                                     hintText: '1.75m',
                                   ),
                                 )),
@@ -214,18 +215,18 @@ class _CadastroPageState extends State<CadastroPage> {
                                     floatingLabelBehavior:
                                         FloatingLabelBehavior.always,
                                     hintStyle: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold),
+                                        color: Colors.grey[500],
+                                      fontWeight: FontWeight.normal),
                                     labelText: 'Peso',
                                     labelStyle: TextStyle(
                                         color: Colors.black,
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.normal),
                                     hintText: '78kg',
                                   ),
                                 ))
                           ],
                         ),
-                        SizedBox(height: 100),
+                        SizedBox(height: 50),
                         SizedBox(
                           height: 50,
                           width: 200,

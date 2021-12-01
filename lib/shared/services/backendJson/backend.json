@@ -1,0 +1,91 @@
+{
+	"medicine": [
+		{
+			"id": 1,
+			"alias": "MEFLOQUINA",
+			"description": "É um antipalúdico derivado da 4-metanol-quinolina, relacionado quimicamente com a quinina, que desenvolve um efeito esquizoticida contra as diferentes formas de paludismo, inclusive resistência à cloroquina, provocadas pelo Plasmodium falciparum. A OMS recomenda a mefloquina como fármaco de primeira escolha em áreas de paludismo resistente à cloroquina. É absorvido no trato gastrintestinal, embora ocorram amplas variações farmacocinéticas entre diferentes pacientes. Atinge uma elevada concentração nos glóbulos vermelhos, distribui-se de maneira ampla, liga-se às proteínas séricas em uma elevada proporção (98%) e possui uma prolongada meia-vida (28 dias). Sofre biotransformação hepática, uma pequena dose é eliminada pela urina enquanto que a maior parte é eliminada por via biliar e pelas fezes. O volume de distribuição e seus níveis séricos são reduzidos em pacientes infectados em comparação com indivíduos normais.",
+			"indications": "Tratamento e profilaxia do paludismo, especialmente o causado pelo Plasmodium falciparum, inclusive as formas resistentes.",
+			"contraindications": "Psicopatias, epilepsia, desequilíbrios neuropsiquiátricos, doenças que cursam com convulsões. Gravidez e lactação, uma vez que foi comprovado efeito teratogênico em animais. Insuficiência hepática ou renal severa. Pacientes com cardiopatias e arritmias de condução. Crianças menores de 2 anos ou com peso corporal inferior a 15 kg.",
+			"posology": "A dose aconselhada é de 250 mg de fármaco base semanal (equivalente a 274 mg de cloridrato de mefloquina). Em indivíduos que viajam para regiões endêmicas aconselham-se 250 mg uma semana antes de partir, em uma dose, e continuar com esse esquema posológico durante 6 semanas. Dose média: 20 mg/kg até um máximo de 1,5 g. Dose em crianças: 20 mg/kg em uma dose única."
+		},
+		{
+			"id": 2,
+			"alias": "PERIDONA",
+			"description": "Antagonista da dopamina, com efeitos antieméticos similares ao da metoclopramida, porém com efeitos extrapiramidais menos frequentes. Estimula a liberação da prolactina. É absorvida rapidamente após administração oral, alcançando o pico de concentração plasmática em 1 hora. A biodisponibilidade oral é baixa (15%), devido a extenso metabolismo de primeira passagem. A acidez gástrica interfere na sua absorção. Tem elevada ligação a proteínas plasmáticas (91%). É eliminada na urina e nas fezes na proporção de 33% e 66%, respectivamente. A sua meia-vida plasmática é de 7 a 9 horas. Administrar com cautela em pacientes com insuficiência renal, procedendo-se ao ajuste posológico, sempre que necessário.",
+			"indications": "Síndromes dispépticas associadas a retardo no esvaziamento gástrico (gastroparesia), refluxo gastresofágico e esofagite. Náuseas e vômitos de origem funcional, ou orgânica, causados por drogas, radioterapia ou alimentos. Indica-se especificamente em pacientes cujos vômitos e náuseas são causados pelos antagonistas dopaminérgicos (bromocriptina) utilizados para o tratamento da doença de Parkinson.",
+			"contraindications": "Hipersensibilidade à domperidona. Hemorragia gastrintestinal e sempre que a estimulação da motilidade gastrintestinal oferecer risco. Tumor hipofisário produtor de prolactina.",
+			"posology": "Adultos: 10 a 20 mg, 3 ou 4 vezes/dia. Crianças: 0,25 a 0,5 mg/kg, 3 ou 4 vezes/dia."
+		},
+		{
+			"id": 3,
+			"alias": "ACIDO TRANEXAMICO",
+			"description": "Trata-se de um agente antifibrinolítico que inibe a degradação do coágulo através da inibição da ativação do plasminogênio, reduzindo a conversão de plasminogênio em plasmina (fibrinolisina), uma enzima que degrada os coágulos de fibrina, fibrinogênio e outras proteínas plasmáticas, incluindo os fatores procoagulantes V e VIII. In vitro, a potência do ácido tranexâmico é de 5 a 10 vezes maior do que a do ácido caproico. É absorvido rapidamente pelo trato gastrintestinal e distribui-se por todos os tecidos; atravessa a barreira placentária e é eliminado no leite materno. É eliminado principalmente por via urinária essencialmente na forma inalterada.",
+			"indications": "Tratamento profilático e curativo das hemorragias por aumento de fibrinólise. Tratamento do edema angioneurótico hereditário.",
+			"contraindications": "Hipersensibilidade ao fármaco.",
+			"posology": "Adultos: via intravenosa: 0,5 g a 1 g, duas a três vezes ao dia, administrados lentamente e em um lapso de tempo não inferior a 1 ml/min. Via intramuscular: dose de ataque, 0,5g a cada quatro a seis horas. Via oral: 1 g a 1,5 g duas a três vezes ao dia. Crianças: via intravenosa: 10 mg/kg duas a três vezes ao dia. Via oral, 25 mg/kg duas a três vezes ao dia."
+		},
+		{
+			"id": 37,
+			"alias": "CILAZAPRIL",
+			"description": "Administrado por via oral, transforma-se em cilazaprilato, inibidor específico da enzima conversora da angiotensina, que suprime e reduz a pressão diastólica, tanto em posição supina como em pé. O cilaprazil é bem absorvido e converte-se rapidamente na forma ativa cilazaprilato. A ingestão de alimentos antes da administração retarda um pouco a absorção, sem conseqüências terapêuticas. Conforme determinações na urina, a biodisponibilidade do cilazaprilato eleva-se em aproximadamente 60%. As concentrações plasmáticas máximas são alcançadas nas 2 horas seguintes à administração do preparo e dependem diretamente da dose. O cilazaprilato é eliminado inalterado pelos rins. A excreção é bifásica, com vidas médias de 2 a 40 horas. A meia-vida efetiva é de 9 horas com uma administração diária.",
+			"indications": "Hipertensão essencial e hipertensão renal.",
+			"contraindications": "É contraindicado em pacientes hipersensíveis ao cilazapril ou a outros inibidores da ECA e em pacientes com ascite. Gravidez e lactação.",
+			"posology": "Deve ser administrado 1 vez ao dia. Dado que a ingestão de alimentos não influi significativamente na absorção, o cilazapril pode ser tomado antes ou durante as refei&lt;-&gt;ções, porém sempre aproximadamente no mesmo horário. Ao final de 4 semanas de tratamento a tensão deve ser medida de novo para adaptar a dose se for necessário. Hipertensão essencial: a posologia habitual de cilazapril é de 2,5 a 5 mg 1 vez ao dia. Nos 2 primeiros dias é recomendada uma dose diária de 2,5 mg. Hipertensão vasculorrenal: deve ser iniciado com uma dose de 0,5 mg ou menos."
+		},
+		{
+			"id": 38,
+			"alias": "ERGOMETRIN",
+			"description": "É uma droga antisserotoninérgica, atua sobre o SNC e estimula diretamente o músculo liso. Não possui atividade bloqueadora alfa-adrenérgica. O efeito clínico da ergometrina resulta do estímulo do músculo liso; a contração da parede uterina em torno dos vasos sanguinolentos da placenta produz homeostase. A sensibilidade do útero ao efeito oxitócico é muito maior no final da gravidez. É rápida e completamente absorvida após a administração oral ou IM. É metabolizada no fígado, inicia sua ação de forma imediata quando administrada por via IV e de 6 a 15 minutos quando por via oral. É eliminada por via renal.",
+			"indications": "Profilaxia e tratamento da hemorragia pós-parto. Não é aconselhável antes da expulsão da placenta, pois pode produzir a retenção desta. Em caso de aborto incompleto pode acelerar a expulsão do conteúdo uterino.",
+			"contraindications": "A relação risco-benefício deverá ser avaliada em pacientes com doença das artérias coronárias, disfunção hepática, hipertensão grave, incluídas aqui toxemia gravídica, hipocalcemia, disfunção renal ou sepse.",
+			"posology": "Na forma farmacêutica oral é suficiente um ciclo de 48 horas. A via IV é aconselhável para urgências em casos de hemorragia uterina excessiva. A administração deve ser feita com lentidão no lapso de 1 minuto. Dose habitual para adultos: 0,2 a 0,4 mg, de 2 a 4 vezes ao dia, até que o período de atonia e hemorragia uterinas tenha passado. Injetável: IM ou IV, 0,2 mg a cada 2 ou 4 horas, até 5 doses."
+		},
+		{
+			"id": 39,
+			"alias": "FLUTAMID",
+			"description": "A ação antiandrogênica da flutamida é exercida pela inibição da captação e da união a receptores nucleares, dos andrógenos nas células brancas. O carcinoma prostático é sensível aos andrógenos e responde ao tratamento contrapondo-se ao efeito da testosterona, como ocorre com a castração (remoção da principal fonte de andrógenos). A flutamida é total e rapidamente absorvida no nível gastrintestinal. Metaboliza-se no nível hepático, gerando metabólitos inativos e ativos (derivados <font face=\"Symbol\">a-hidroxilados). A meia-vida de eliminação da droga biologicamente ativa é de 6 a 8 horas; o equilíbrio de concentração plasmática é alcançado em 30 horas. A união às proteínas plasmáticas é de 95%. O metabólito ativo é encontrado na próstata em concentrações maiores que a flutamida. Após a administração de flutamida podem ocorrer elevações plasmáticas de testosterona e estradiol. Não é dialisável.",
+			"indications": "Carcinoma prostático metastásico (estágio D2). Pode ser usado simultaneamente com agonistas LH-RH para aumentar a efetividade.",
+			"contraindications": "Hipersensibilidade à flutamida.",
+			"posology": "3 doses diárias até um total de 750 mg/dia."
+		},
+		{
+			"id": 40,
+			"alias": "HIDROQUINONA",
+			"description": "Trata-se de um agente sintético de uso externo, utilizado como um despigmentante de diferentes dermatoses que apresentam uma hiperpigmentação por excesso de melanina (cloasma, lentigo, melasmas, efélides). A hidroquinona a 4% é aplicada localmente sobre as diferentes zonas hiperpigmentadas, causando lenta e progressiva redução da pigmentação. Atua produzindo uma despigmentação reversível da pele através de inibição da oxidação enzimática da tirosina para 3,4-di-hidroxifenilalanina (DOPA) e, além disso, bloqueando outros processos metabólicos da melanogênese. Em consequência, com a supressão da formação de melanina, a pigmentação cutânea é reduzida.",
+			"indications": "Dermatoses hiperpigmentadas. Cloasma, melasma, sardas, lentigo senil. Melanose solar.",
+			"contraindications": "Hipersensibilidade ao fármaco.",
+			"posology": "Aplicar localmente uma fina camada do creme (4%) sobre a região a ser tratada, duas vezes ao dia. O produto não deve ser aplicado sobre queimaduras solares, lábios, olhos, nem para despigmentar pestanas ou cílios. Ao término da aplicação do creme, deve ser efetuada cuidadosa limpeza da tampa e do bico do recipiente com um algodão, para evitar o escurecimento do creme pela oxidação da hidroquinona em contato com o ar."
+		},
+		{
+			"id": 41,
+			"alias": "ATENOLOL",
+			"description": "Atua preferencialmente sobre os receptores cardíacos <font face=\"Symbol\">b1, embora também tenha afinidade com os receptores vasculares periféricos ou bronquiais <font face=\"Symbol\">b2. Como sua cardiosseletividade não é absoluta, as doses elevadas de atenolol podem bloquear os receptores <font face=\"Symbol\">b2. Carece de atividade simpaticomimética intrínseca e de efeito estabilizador da membrana. Seu efeito principal é reduzir a resposta cardíaca diante do cansaço e ao exercício, razão pela qual é indicado em angina pectoris. Absorvido 50% por via oral, sua fixação às proteínas é baixa (6 a 16%); metaboliza-se minimamente no fígado e 85% a 100% é excretado por via renal, de forma inalterada. Sua meia-vida é de 6 a 7 horas e aumenta de 16 a 27 horas ou mais em pacientes com disfunção renal.",
+			"indications": "Hipertensão essencial, angina pectoris. Arritmias cardíacas. Coadjuvante no tratamento da estenose subaórtica hipertrófica.",
+			"contraindications": "Bloqueio cardíaco de 2º e 3º grau. Choque cardiogênico. Gravidez e lactação. Deve-se ter em mente que o atenolol atravessa a barreira placentária. Crianças. Insuficiência cardíaca manifesta, bradicardia sinusal.",
+			"posology": "Hipertensão: a maioria dos pacientes responde a 100 mg/dia em uma única dose; alguns podem ser mantidos com 1 dose de 50 mg/dia. Angina pectoris: a dose eficaz é de 100 mg em dose única diária ou em 2 doses de 50 mg. Arritmias: logo após o tratamento IV com atenolol pode ser indicada uma terapêutica de manutenção por via oral com 50 a 100 mg/dia. Em pacientes com insuficiência renal a posologia deverá ser ajustada, pois a eliminação desta droga se produz por via urinária. Em pacientes idosos a redução do metabolismo e da capacidade de excreção pode aumentar a depressão miocárdica e requerer uma diminuição da dose."
+		},
+		{
+			"id": 42,
+			"alias": "SILIX",
+			"description": "O basiliximabe é um anticorpo monoclonal quimérico camundongo/humano da subclasse igGLK que posui alta afinidade e especificidade de união com a cadeia alfa do receptor para a interleucina-2 humano (CD25). Este receptor é expresso nos linfócitos T e dispõe-se na membrana da célula em resposta ao estímulo antigênico do linfótico T. O basiliximabe bloqueia o sítio de união à inteleucina-2 e, assim, inibe a proliferção celular mediada por esta citocina. Consegue-se negativação do CD25 desde que se mantenha uma concentração sérica de basiliximabe superior a 0,2 <font face=\"Symbol\">mg/ml. Após redução sustentada da concentração sérica de basiliximabe abaixo daquele limite, observou-se recuperação dos níveis normais de CD25 dentro de 1 a 2 semanas. A administração de basiliximabe não produz supressão da medula óssea nem aumento dos níveis da citocina. A utilidade terapêutica do basiliximabe pode ser ampla; não obstante, até o momento conseguiu-se provar sua utilidade apenas na prevenção da rejeição do transplante renal de novo em combinação com ciclosporina e corticoides. Devido a sua natureza quimérica, existe a possibilidade de desenvolvimento de anticorpos contra a porção murina do basiliximabe, os quais podem ou não reduzir sua ação; apesar disto, demonstrou-se que a geração destes anticorpos é praticamente nula. Informou-se também uma incidência muito baixa de geração de anticorpos anti-idiotipo. Em pacientes submetidos a transplante renal, o volume de distribuição do basiliximabe (em doses de 15 mg a 150 mg IV) é de 8,6 ±4,1 litros, existindo uma parte do anticorpo livre no plasma e outra unida a linfócitos e monócitos/macrófagos, únicas células-alvo. A meia-vida terminal do basiliximabe é de 7,2 dias e a depuração total é de 41 ml/h ± 19 ml/h. Em pacientes submetidos a transplante hepático, o volume de distribuição do basiliximabe é de 7,5 L ± 2,5 L; a meia vida terminal é de 4,1 ± 2,1 dias e a depuração total é de 75 ml/h ± 24 ml/h. A depuração pode aumentar devido à perda de basiliximabe através do líquido ascítico e por hemorragias pós-operatórias. Nestes pacientes, esta perda é compensada por redução em paralelo do limiar de saturação do CD25 a 0,1 <font face=\"Symbol\">mg/ml onde a duração do bloqueio após redução da concentração abaixo deste limite é similar àquela observada nos pacientes com transplante renal (1 a 2 semanas).",
+			"indications": "Profilaxia da rejeição aguda de transplante renal em combinação com imunossupressores convencionais (ciclosporina-corticoides).",
+			"contraindications": "Hipersensibilidade ao fármaco.",
+			"posology": "Adultos: a dose total é de 40 mg de basiliximabe, divididos em 20 mg 2 horas antes da intevenção por via intravenosa (infusão ou bolus), e 20 mg 4 dias depois do transplante. Segunda dose deve ser suspensa se houver perda do enxerto. Crianças com menos de 40 kg de peso: a dose total é de 20 mg de basiliximabe, divididos em 10 mg 2 horas antes da intervenção por via intravenosa (infusão ou bolus), e 10 mg 4 dias depois do transplante. Criança com mais de 40 kg de peso: a dose total é de 40 mg de basiliximabe, divididos em 20 mg 2 horas antes da intervenção por via intravenosa (infusão ou bolus), e 20 mg 4 dias depois do transplante."
+		}
+	
+	],
+	"reaction": [
+		{
+			"id": 1,
+			"alias": "Sonolência"
+		},
+		{
+			"id": 2,
+			"alias": "Ingestão de Alcool"
+		},
+		{
+			"id": 3,
+			"alias": "Enjoo"
+		}
+	]
+}
