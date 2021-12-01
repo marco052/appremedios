@@ -10,4 +10,5 @@ class AppColors {
   static final text = Color(0xFF000000);
   static final buttonText = Color(0xFFFFFFFF);
   static final placeholder = Color(0xFF5C6660);
+  static final warning = Color(0xFFFFD687);
 }

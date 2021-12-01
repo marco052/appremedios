@@ -125,7 +125,8 @@ class _HomePageState extends State<HomePage> {
           min = min.substring(min.length - 2);
 
           alarmsToAdd.add(new AlarmeMed.construtor(
-            medicine.name, 'Utilizar ${medicine.quantity} ${medicine.type}', '$hr:$min'
+            medicine.name, 'Utilizar ${medicine.quantity} ${medicine.type}', '$hr:$min',
+            (medicine.reason != null && medicine.reason! > 0)
           ));
         }
 
@@ -141,7 +142,8 @@ class _HomePageState extends State<HomePage> {
           min = min.substring(min.length - 2);
 
           alarmsToAdd.add(new AlarmeMed.construtor(
-            medicine.name, 'Utilizar ${medicine.quantity} ${medicine.type}', '$hr:$min'
+            medicine.name, 'Utilizar ${medicine.quantity} ${medicine.type}', '$hr:$min', 
+            (medicine.reason != null && medicine.reason! > 0)
           ));
 
         }
@@ -234,11 +236,20 @@ class _HomePageState extends State<HomePage> {
                         ),
                         dense: true,
                         trailing: SizedBox(
-                          width: 55,
+                          width: 70,
                           height: 40,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              alarmes[index].hasRestriction ?
+                              Flexible(
+                                child: Icon(
+                                  Icons.warning,
+                                  size: 15,
+                                  color: AppColors.warning,
+                                ),
+                              ) :
+                              SizedBox(width: 15,),
                               Flexible(
                                 child: Icon(
                                   Icons.alarm,
