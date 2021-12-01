@@ -108,7 +108,7 @@ class _AddMedicineState extends State<AddMedicine>
 
         if (validQuantity != null) {
           ScheduledMedicine scheduledMedicine = new ScheduledMedicine(
-              id: 0,
+              id: null,
               name: this._selectedMedicine.name,
               quantity: validQuantity,
               type: this._dosageTypeValue,
