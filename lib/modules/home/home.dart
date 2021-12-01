@@ -4,7 +4,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pharmacy_wiki/modules/add_medicine/add_medicine.dart';
 import 'package:pharmacy_wiki/modules/medicines/medicamentos_page.dart';
-import 'package:pharmacy_wiki/modules/notifications/notification_service.dart';
 import 'package:pharmacy_wiki/shared/classes/horarioMedicamentos.dart';
 import 'package:pharmacy_wiki/shared/classes/medicamentos_class.dart';
 import 'package:pharmacy_wiki/shared/classes/scheduled_medicine.dart';
@@ -29,6 +28,7 @@ class _HomePageState extends State<HomePage> {
   String userName = '';
   List<ScheduledMedicine> medicines = [];
   List<AlarmeMed> alarmes = [];
+  List<int> notificationsId = [];
 
   Future<void> navigationPage() async {
     Navigator.push(
@@ -130,6 +130,40 @@ class _HomePageState extends State<HomePage> {
     updateSchedule();
   }
 
+  void programNotifications() {
+    for (var i in medicines) {
+      print("remediio: ${i}");
+      if (i.frequency.isRoutine) {
+        print("freq: ${i.frequency.isRoutine}");
+        var medicinesToday = i.frequency.schedule[DateTime.now().weekday-1];
+        
+        for(var m in medicinesToday){
+          var hour1 = DateTime.parse(m);
+          print("hora1: ${hour1}");
+          if(hour1.isAfter(DateTime.now()) && !notificationsId.contains(i.id)){
+            LocalNotification().displayScheduledNotification(
+              "Hora do ${i.name}!",
+              "Lembre-se de tomar ${i.quantity} ${i.type} do remédio!",
+              hour1, 
+            );
+            notificationsId.add(i.id!);
+          }
+        }  
+      } else {
+        print("foi não boy");
+        var hour1 = DateTime.parse(i.frequency.noRoutine);
+        if(hour1.isAfter(DateTime.now())){
+          LocalNotification().displayScheduledNotification(
+            "Hora do ${i.name}!",
+              "Lembre-se de tomar ${i.quantity} ${i.type} do remédio!",
+              hour1, 
+          );
+        }
+      }
+    }
+  }
+
+
   void updateSchedule() async {
     Connection conn = Connection();
     List<User> userInfo = await conn.getUserInfo();
@@ -187,7 +221,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     WidgetsBinding.instance?.addPostFrameCallback((_) => onInit());
-
+    programNotifications();
     tz.initializeTimeZones();
   }
 
@@ -334,9 +368,10 @@ class _HomePageState extends State<HomePage> {
                   style: AppTextStyles.buttonText,
                 ),
                 onPressed: () {
-                  LocalNotification().displayScheduledNotification(
-                      'Oi', 'Luscas', DateTime.now().add(Duration(minutes: 1)));
-                  //navigationPage();
+                  /*LocalNotification().displayScheduledNotification(
+                      'Oi', 'Luscas', DateTime.now().add(Duration(minutes: 1)));*/
+                  programNotifications();
+                  navigationPage();
                 },
               ),
             )
