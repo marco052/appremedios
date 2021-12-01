@@ -89,7 +89,6 @@ class _AddMedicineState extends State<AddMedicine>
     List<List<String>> schedules = [[], [], [], [], [], [], []];
     String uniqueSchedule = '';
 
-    print(scheduleList.length);
 
     this.scheduleList.forEach((sch) {
       hourMinute = sch.time.split(':');
@@ -112,31 +111,29 @@ class _AddMedicineState extends State<AddMedicine>
             uniqueSchedule = dateSchedule.toIso8601String();
           }
         }
-
-        int? validQuantity = int.tryParse(this._quantity.value.text);
-
-        if (validQuantity != null) {
-          ScheduledMedicine scheduledMedicine = new ScheduledMedicine(
-              id: id,
-              name: this._selectedMedicine.name,
-              quantity: validQuantity,
-              type: this._dosageTypeValue,
-              frequency: new Frequency(
-                  isRoutine: this._typeValue == 'Único' ? false : true,
-                  schedule: schedules,
-                  noRoutine: uniqueSchedule),
-              reason: reaction[_reactionValue]);
-
-          Connection conn = new Connection();
-          conn.insertMedicine(scheduledMedicine);
-
-          print('ok');
-
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (BuildContext context) => HomePage()));
-        }
       }
     });
+
+    int? validQuantity = int.tryParse(this._quantity.value.text);
+
+    if (validQuantity != null) {
+      ScheduledMedicine scheduledMedicine = new ScheduledMedicine(
+          id: id,
+          name: this._selectedMedicine.name,
+          quantity: validQuantity,
+          type: this._dosageTypeValue,
+          frequency: new Frequency(
+              isRoutine: this._typeValue == 'Único' ? false : true,
+              schedule: schedules,
+              noRoutine: uniqueSchedule),
+          reason: reaction[_reactionValue]);
+
+      Connection conn = new Connection();
+      conn.insertMedicine(scheduledMedicine);
+
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (BuildContext context) => HomePage()));
+    }
   }
 
   Widget botaoAdd(String rec) {

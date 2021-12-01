@@ -334,9 +334,7 @@ class _HomePageState extends State<HomePage> {
                   style: AppTextStyles.buttonText,
                 ),
                 onPressed: () {
-                  LocalNotification().displayScheduledNotification(
-                      'Oi', 'Luscas', DateTime.now().add(Duration(minutes: 1)));
-                  //navigationPage();
+                  navigationPage();
                 },
               ),
             )

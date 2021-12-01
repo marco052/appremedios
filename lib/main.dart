@@ -1,11 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:pharmacy_wiki/modules/notifications/notification_service.dart';
 import 'package:pharmacy_wiki/modules/splash/splash_page.dart';
 import 'package:pharmacy_wiki/shared/services/local_notification.dart';
+import 'package:pharmacy_wiki/shared/services/sensors_manager.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   LocalNotification().initilizate();
+
+  SensorManager().accelerometerSubscribe();
+  // SensorManager().scheduleUnsubscribe(Duration(seconds: 10));
+
   runApp(MyApp());
 }
 
