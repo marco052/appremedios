@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacy_wiki/modules/notifications/notification_service.dart';
 import 'package:pharmacy_wiki/modules/splash/splash_page.dart';
+import 'package:pharmacy_wiki/shared/services/local_notification.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  NotificationService().initNotification();
+  LocalNotification().initilizate();
   runApp(MyApp());
 }
 

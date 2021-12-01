@@ -9,6 +9,7 @@ import 'package:pharmacy_wiki/shared/classes/medicamentos_class.dart';
 import 'package:pharmacy_wiki/shared/classes/scheduled_medicine.dart';
 import 'package:pharmacy_wiki/shared/classes/user.dart';
 import 'package:pharmacy_wiki/shared/data/connection.dart';
+import 'package:pharmacy_wiki/shared/services/local_notification.dart';
 import 'package:pharmacy_wiki/shared/theme/app_colors.dart';
 import 'package:pharmacy_wiki/shared/theme/app_text_styles.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -293,7 +294,7 @@ class _HomePageState extends State<HomePage> {
                   style: AppTextStyles.buttonText,
                 ),
                 onPressed: () {
-                  NotificationService().showNotification(1, "title", "body", 5);
+                  LocalNotification().displayScheduledNotification('Oi', 'Luscas', DateTime.now().add(Duration(minutes: 1)));
                   //navigationPage();
                 },
               ),
